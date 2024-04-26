@@ -16,7 +16,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const labelColor = hasError ? 'red' : undefined;
 
     return (
-      <div css={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+      <div
+        css={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '6px',
+          width: '100%',
+        }}
+      >
         {label && (
           <Text typography="t7" color={labelColor} display="inline-block">
             {label}
