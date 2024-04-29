@@ -1,6 +1,7 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
 
 import { Text, Input } from '.';
+import { colors } from '@styles/colorPalette';
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: React.ReactNode;
@@ -13,21 +14,42 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     { label, hasError, helpMessage, onFocus, onBlur, ...props },
     ref
   ) {
-    const labelColor = hasError ? 'red' : undefined;
+    const labelColor = hasError ? 'red' : 'main';
 
     return (
       <div
         css={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '6px',
+          gap: 6,
           width: '100%',
         }}
       >
         {label && (
-          <Text typography="t7" color={labelColor} display="inline-block">
-            {label}
-          </Text>
+          <div
+            css={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+            }}
+          >
+            <Text
+              typography="t5"
+              bold
+              color={labelColor}
+              display="inline-block"
+            >
+              {label}
+            </Text>
+            <hr
+              css={{
+                flex: 1,
+                height: '2px',
+                backgroundColor: colors.main,
+                border: 'none',
+              }}
+            />
+          </div>
         )}
         <Input ref={ref} aria-invalid={hasError} {...props} />
         {helpMessage && (
