@@ -1,4 +1,5 @@
 export const colors = {
+  main: 'var(--main)',
   gray: 'var(--gray)',
   gray20: 'var(--gray20)',
   gray50: 'var(--gray50)',
