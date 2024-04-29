@@ -21,8 +21,7 @@ interface ButtonProps {
 const BaseButton = styled.button<ButtonProps>(
   {
     cursor: 'pointer',
-    fontWeight: 'bold',
-    borderRadius: '6px',
+    fontWeight: 'normal',
   },
   ({ color = 'primary', weak }) =>
     weak ? buttonWeakMap[color] : buttonColorMap[color],

@@ -4,9 +4,9 @@ import { colors } from './colorPalette';
 
 export const buttonColorMap = {
   primary: css`
-    border: none;
-    background-color: ${colors.blue980};
-    color: ${colors.white};
+    border: 1px solid ${colors.main};
+    background-color: ${colors.white};
+    color: ${colors.main};
   `,
   error: css`
     border: none;
@@ -18,8 +18,8 @@ export const buttonColorMap = {
 export const buttonWeakMap = {
   primary: css`
     background-color: ${colors.white};
-    color: ${colors.blue980};
-    border: 1px solid ${colors.blue980};
+    color: ${colors.main};
+    border: 1px solid ${colors.main};
   `,
   error: css`
     background-color: ${colors.white};
@@ -39,7 +39,7 @@ export const buttonSizeMap = {
   `,
   large: css`
     font-size: 18px;
-    padding: 12px 10px;
+    padding: 8px 16px;
   `,
 };
 
