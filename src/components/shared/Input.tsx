@@ -7,13 +7,14 @@ export const Input = styled.input`
   font-size: 14px;
   width: 100%;
   font-weight: 400;
+  color: ${colors.main};
   border: none;
-  border-bottom: 1px solid ${colors.gray400};
+  border: 1px solid ${colors.main};
   box-sizing: border-box;
 
   &:focus {
     outline: none;
-    border-color: ${colors.blue980};
+    color: ${colors.main};
   }
 
   &[aria-invalid='true'] {
