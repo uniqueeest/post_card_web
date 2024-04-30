@@ -19,6 +19,8 @@ export const PostSwiper = () => {
         alignItems: 'center',
         width: '100%',
       }}
+      data-aos="zoom-in"
+      data-aos-duration="1000"
     >
       <LeftArrow currentIndex={activeIndex} />
       <Swiper
