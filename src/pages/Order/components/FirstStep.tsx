@@ -2,7 +2,7 @@ import { useState, ChangeEvent } from 'react';
 
 import { Postcode } from '@components';
 import { Button, Checkbox, Flex, Text, TextField } from '@components/shared';
-import { OrderValue, PostInfo } from '..';
+import { OrderValue, PostInfo } from '@models';
 import { validateOrder } from '../utils';
 import { IMAGE_LIST, RECEIPT_LIST } from '@constants';
 import { colors } from '@styles/colorPalette';
@@ -152,6 +152,17 @@ export function FirstStep({
           ))}
         </div>
         <TextField placeholder="선택한 항목" value={sortedImages} readOnly />
+        <Text
+          css={{
+            alignSelf: 'end',
+          }}
+        >
+          total{' '}
+          {!!infoValue.selectedImage
+            ? (3000 * infoValue.selectedImage.length).toLocaleString()
+            : 0}
+          원
+        </Text>
       </article>
       <TextField
         id="name"

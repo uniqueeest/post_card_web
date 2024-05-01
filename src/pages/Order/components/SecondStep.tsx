@@ -23,13 +23,15 @@ export function SecondStep() {
     >
       <h2
         css={{
-          fontSize: 32,
+          fontSize: 38,
           fontWeight: 'bold',
         }}
       >
         Order Complete
       </h2>
-      <span>주문이 완료되었습니다.</span>
+      <span css={{ fontSize: 14 }}>
+        주문 확인 후 안내 메시지 보내드리겠습니다.
+      </span>
     </article>
   );
 }
