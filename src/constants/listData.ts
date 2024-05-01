@@ -32,3 +32,14 @@ export const IMAGE_LIST = [
     name: '8',
   },
 ];
+
+export const RECEIPT_LIST = [
+  {
+    value: '직접수령',
+    label: '직접수령',
+  },
+  {
+    value: '택배수령',
+    label: '택배수령 (택배비 3,300₩ 추가)',
+  },
+];
