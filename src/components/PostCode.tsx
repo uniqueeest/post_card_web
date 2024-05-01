@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
 
 import { Button, Flex, Input, Spacing, Text } from './shared';
+import { PostInfo } from '@pages/Order';
 
 declare global {
   interface Window {
@@ -8,12 +9,25 @@ declare global {
   }
 }
 
-export const Postcode = () => {
+export const Postcode = ({
+  onChangePostInfo,
+}: {
+  onChangePostInfo: (postValue: PostInfo) => void;
+}) => {
   const [isPostcodeOpen, setIsPostcodeOpen] = useState(false);
-  const [postcode, setPostcode] = useState('');
-  const [address, setAddress] = useState('');
-  const [detailAddress, setDetailAddress] = useState('');
+  const [postInfo, setPostInfo] = useState<PostInfo>({
+    postcode: '',
+    address: '',
+    detailAddress: '',
+  });
   const postcodeRef = useRef(null);
+
+  const handleChangeDetailAddress = (event: ChangeEvent<HTMLInputElement>) => {
+    setPostInfo((prev) => ({
+      ...prev,
+      detailAddress: event.target.value,
+    }));
+  };
 
   useEffect(() => {
     if (isPostcodeOpen && postcodeRef.current) {
@@ -31,6 +45,12 @@ export const Postcode = () => {
     }
   }, [isPostcodeOpen, postcodeRef.current]);
 
+  useEffect(() => {
+    if (postInfo.postcode && postInfo.address && postInfo.detailAddress) {
+      onChangePostInfo(postInfo);
+    }
+  }, [postInfo.postcode, postInfo.detailAddress]);
+
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
     let extraAddress = '';
@@ -46,8 +66,11 @@ export const Postcode = () => {
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
 
-    setPostcode(data.zonecode);
-    setAddress(fullAddress);
+    setPostInfo((prev) => ({
+      ...prev,
+      postcode: data.zonecode,
+      address: fullAddress,
+    }));
     setIsPostcodeOpen(false);
   };
 
@@ -57,7 +80,9 @@ export const Postcode = () => {
 
   return (
     <Flex css={{ width: '100%' }} direction="column" gap={4}>
-      <Text typography="t7">주소</Text>
+      <Text typography="t7" color="main">
+        주소
+      </Text>
       <Spacing size={6} />
       <Flex gap={8}>
         <Input
@@ -66,18 +91,18 @@ export const Postcode = () => {
           }}
           type="text"
           placeholder="우편번호"
-          value={postcode}
+          value={postInfo.postcode}
           readOnly
           onClick={handleOpenPostcode}
         />
         <Button onClick={handleOpenPostcode}>우편번호 찾기</Button>
       </Flex>
-      <Input type="text" placeholder="주소" value={address} readOnly />
+      <Input type="text" placeholder="주소" value={postInfo.address} readOnly />
       <Input
         type="text"
         placeholder="상세주소"
-        value={detailAddress}
-        onChange={(e) => setDetailAddress(e.target.value)}
+        value={postInfo.detailAddress}
+        onChange={handleChangeDetailAddress}
       />
       <Spacing size={24} />
       {isPostcodeOpen && (
