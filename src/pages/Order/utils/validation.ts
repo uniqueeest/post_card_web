@@ -1,4 +1,4 @@
-import { OrderValue } from '..';
+import { OrderValue } from '@models';
 
 export function validateOrder(order: OrderValue): boolean {
   if (
