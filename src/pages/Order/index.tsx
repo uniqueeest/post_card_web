@@ -1,20 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 import { FirstStep, SecondStep } from './components';
-
-export type PostInfo = {
-  postcode: string;
-  address: string;
-  detailAddress: string;
-};
-
-export type OrderValue = {
-  selectedImage: string[];
-  name: string;
-  phoneNumber: string;
-  receiptMethod: string | null;
-  address?: PostInfo;
-};
+import { validateOrder, generateSixDigitNumber } from './utils';
+import { OrderValue } from '@models';
+import { store } from '@/remote/firebase';
+import { COLLECTIONS } from '@constants';
 
 export function OrderPage() {
   const [step, setStep] = useState(1);
@@ -24,9 +15,24 @@ export function OrderPage() {
     setOrderValue((prev) => ({
       ...prev,
       ...infoValue,
+      totalFee: total(infoValue as OrderValue),
     }));
     setStep((prev) => prev + 1);
   };
+
+  useEffect(() => {
+    async function postOrderInfo() {
+      if (validateOrder(orderValue as OrderValue) && step === 2) {
+        const orderRef = doc(
+          collection(store, COLLECTIONS.ORDER),
+          generateSixDigitNumber()
+        );
+        await setDoc(orderRef, orderValue);
+      }
+    }
+
+    postOrderInfo();
+  }, [step]);
 
   return (
     <section
@@ -38,4 +44,12 @@ export function OrderPage() {
       {step === 2 && <SecondStep />}
     </section>
   );
+}
+
+function total(orderValue: OrderValue) {
+  const { selectedImage, receiptMethod } = orderValue;
+  const totalPostFee = selectedImage.length * 3000;
+  const deliveryFee = receiptMethod === '택배수령' ? 3300 : 0;
+
+  return totalPostFee + deliveryFee;
 }
