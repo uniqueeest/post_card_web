@@ -20,9 +20,10 @@ export function MainPage() {
       }}
     >
       <Flex direction="column" align="center">
+        <Spacing size={38} />
         <Text
           css={{
-            alignSelf: 'start',
+            marginBottom: '-10px',
           }}
           color="main"
           data-aos="zoom-in"
@@ -39,11 +40,11 @@ export function MainPage() {
         >
           youwere
         </Text>
-        <Spacing size={28} />
+        <Spacing size={38} />
         <PostSwiper />
-        <Spacing size={50} />
+        <Spacing size={38} />
         <Button
-          css={{ width: '50%' }}
+          css={{ width: '130px' }}
           data-aos="zoom-in"
           data-aos-duration="1000"
           onClick={() => navigate('/order')}
