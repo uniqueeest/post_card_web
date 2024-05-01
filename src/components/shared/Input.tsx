@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { colors } from '@styles/colorPalette';
 
 export const Input = styled.input`
-  padding: 8px 0;
+  padding: 8px 4px;
   font-size: 14px;
   width: 100%;
   font-weight: 400;
