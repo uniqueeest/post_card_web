@@ -11,3 +11,7 @@ export type OrderValue = {
   receiptMethod: string | null;
   address?: PostInfo;
 };
+
+export type OrderData = OrderValue & {
+  totalFee: number;
+};
