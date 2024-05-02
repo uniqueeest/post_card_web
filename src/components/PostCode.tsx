@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, ChangeEvent } from 'react';
 
 import { Button, Flex, Input, Spacing, Text } from './shared';
-import { PostInfo } from '@pages/Order';
+import { PostInfo } from '@models';
 
 declare global {
   interface Window {
@@ -23,7 +23,7 @@ export const Postcode = ({
   const postcodeRef = useRef(null);
 
   const handleChangeDetailAddress = (event: ChangeEvent<HTMLInputElement>) => {
-    setPostInfo((prev) => ({
+    setPostInfo((prev: any) => ({
       ...prev,
       detailAddress: event.target.value,
     }));
@@ -116,7 +116,7 @@ export const Postcode = ({
           <div
             ref={postcodeRef}
             style={{ width: '100%', height: '100%' }}
-          ></div>
+          />
           <img
             src="//t1.daumcdn.net/postcode/resource/images/close.png"
             style={{
