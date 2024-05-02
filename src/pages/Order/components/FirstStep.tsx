@@ -176,6 +176,7 @@ export function FirstStep({
         onChange={handleChangeInputValue}
       />
       <TextField
+        type="number"
         id="phoneNumber"
         label="phone number"
         value={infoValue.phoneNumber}
