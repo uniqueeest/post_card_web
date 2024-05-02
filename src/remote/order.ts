@@ -8,10 +8,10 @@ import {
 } from 'firebase/firestore';
 
 import { COLLECTIONS } from '@/constants';
-import { OrderValue } from '@models';
+import { OrderData } from '@models';
 import { store } from './firebase';
 
-export async function getOrders(pageParams?: QuerySnapshot<OrderValue>) {
+export async function getOrders(pageParams?: QuerySnapshot<OrderData>) {
   const orderQuery =
     pageParams == null
       ? query(collection(store, COLLECTIONS.ORDER), limit(10))
@@ -27,7 +27,7 @@ export async function getOrders(pageParams?: QuerySnapshot<OrderValue>) {
     (doc) =>
       ({
         ...doc.data(),
-      } as OrderValue)
+      } as OrderData)
   );
 
   const lastVisible = orderSnapshot.docs[orderSnapshot.docs.length - 1];
