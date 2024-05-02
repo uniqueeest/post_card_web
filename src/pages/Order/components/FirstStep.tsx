@@ -177,6 +177,7 @@ export function FirstStep({
       />
       <TextField
         type="number"
+        inputMode="numeric"
         id="phoneNumber"
         label="phone number"
         value={infoValue.phoneNumber}
