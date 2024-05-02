@@ -16,10 +16,12 @@ export function MainPage() {
   return (
     <section
       css={{
+        display: 'flex',
+        justifyContent: 'center',
         padding: '16px',
       }}
     >
-      <Flex direction="column" align="center">
+      <Flex css={{ maxWidth: 680 }} direction="column" align="center">
         <Spacing size={38} />
         <Text
           css={{

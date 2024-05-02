@@ -37,6 +37,8 @@ export function OrderPage() {
   return (
     <section
       css={{
+        display: 'flex',
+        justifyContent: 'center',
         padding: 16,
       }}
     >

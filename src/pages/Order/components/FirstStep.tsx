@@ -76,7 +76,12 @@ export function FirstStep({
   };
 
   return (
-    <Flex css={{ width: '100%' }} direction="column" align="start" gap={14}>
+    <Flex
+      css={{ width: '100%', maxWidth: 680 }}
+      direction="column"
+      align="start"
+      gap={14}
+    >
       <article
         css={{
           display: 'flex',
