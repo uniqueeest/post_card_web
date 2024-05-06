@@ -15,6 +15,10 @@ export const Input = styled.input`
   &:focus {
     outline: none;
     color: ${colors.main};
+
+    ::placeholder {
+      color: transparent;
+    }
   }
 
   &[aria-invalid='true'] {
