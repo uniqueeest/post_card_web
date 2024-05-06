@@ -150,42 +150,60 @@ export function FirstStep({
           }}
         >
           {IMAGE_LIST.map((image, index) => (
-            <div
-              key={image.path}
-              css={{
-                position: 'relative',
-                cursor: 'pointer',
-                transform: infoValue.selectedImage.includes(image.name)
-                  ? 'scale(0.9)'
-                  : 'scale(1)',
-                transition: 'transform 0.2s ease',
-              }}
-              onClick={() => {
-                handleSelectedImages(image.name);
-              }}
-            >
-              <img
-                css={{
-                  width: index === 6 || index === 7 ? '160px' : '110px',
-                  height: index === 0 ? '153.45px' : '',
-                }}
-                src={image.path}
-                alt={`이미지-${index}`}
-              />
-              <div
-                css={{
-                  position: 'absolute',
-                  top: 0,
-                  padding: 4,
-                  zIndex: 10,
-                  backgroundColor: colors.main,
-                  color: colors.white,
-                  fontSize: 14,
-                }}
-              >
-                {index + 1}
-              </div>
-            </div>
+            <>
+              {image.soldOut ? (
+                <div
+                  css={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: 110,
+                    background: colors.main,
+                    color: colors.white,
+                    zIndex: 2,
+                  }}
+                >
+                  Sold Out
+                </div>
+              ) : (
+                <div
+                  key={image.path}
+                  css={{
+                    position: 'relative',
+                    cursor: 'pointer',
+                    transform: infoValue.selectedImage.includes(image.name)
+                      ? 'scale(0.9)'
+                      : 'scale(1)',
+                    transition: 'transform 0.2s ease',
+                  }}
+                  onClick={() => {
+                    handleSelectedImages(image.name);
+                  }}
+                >
+                  <img
+                    css={{
+                      width: index === 6 || index === 7 ? '160px' : '110px',
+                      height: index === 0 ? '153.45px' : '',
+                    }}
+                    src={image.path}
+                    alt={`이미지-${index}`}
+                  />
+                  <div
+                    css={{
+                      position: 'absolute',
+                      top: 0,
+                      padding: 4,
+                      zIndex: 10,
+                      backgroundColor: colors.main,
+                      color: colors.white,
+                      fontSize: 14,
+                    }}
+                  >
+                    {index + 1}
+                  </div>
+                </div>
+              )}
+            </>
           ))}
         </div>
         <TextField placeholder="선택한 항목" value={sortedImages} readOnly />
