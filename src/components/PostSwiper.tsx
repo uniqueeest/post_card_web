@@ -25,7 +25,7 @@ export const PostSwiper = () => {
       <LeftArrow currentIndex={activeIndex} />
       <Swiper
         css={{
-          width: '300px',
+          width: '330px',
         }}
         navigation={{ nextEl: '.next_click', prevEl: '.prev_click' }}
         onSwiper={(swiper) => {
