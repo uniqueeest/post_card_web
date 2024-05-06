@@ -24,3 +24,15 @@ export function validateOrder(order: OrderValue): boolean {
 
   return true;
 }
+
+export function isPhoneNumberFormat(phoneNumber: string) {
+  if (phoneNumber == '') {
+    return true;
+  }
+  const phoneNumberRule = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
+  return phoneNumberRule.test(phoneNumber);
+}
+
+export function filterConsonantsOrVowelsOnly(name: string) {
+  return /^(?![ㄱ-ㅎㅏ-ㅣ]+$).*/.test(name);
+}

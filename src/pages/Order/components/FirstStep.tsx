@@ -3,7 +3,11 @@ import { useState, ChangeEvent } from 'react';
 import { Postcode } from '@components';
 import { Button, Checkbox, Flex, Text, TextField } from '@components/shared';
 import { OrderValue, PostInfo } from '@models';
-import { validateOrder } from '../utils';
+import {
+  validateOrder,
+  isPhoneNumberFormat,
+  filterConsonantsOrVowelsOnly,
+} from '../utils';
 import { IMAGE_LIST, RECEIPT_LIST } from '@constants';
 import { colors } from '@styles/colorPalette';
 import { useAlertContext } from '@/contexts/alertContext';
@@ -73,6 +77,33 @@ export function FirstStep({
       ...prev,
       address: postValue,
     }));
+  };
+
+  const handleSubmitOrder = () => {
+    if (!validateOrder(infoValue)) {
+      return open({
+        title: '',
+        body: '모든 항목을 입력해주세요.',
+        onButtonClick: close,
+      });
+    }
+
+    if (!filterConsonantsOrVowelsOnly(infoValue.name)) {
+      return open({
+        title: '',
+        body: '이름을 다시 입력해주세요.',
+        onButtonClick: close,
+      });
+    }
+
+    if (!isPhoneNumberFormat(infoValue.phoneNumber)) {
+      return open({
+        title: '',
+        body: '휴대폰 번호를 다시 입력해주세요.',
+        onButtonClick: close,
+      });
+    }
+    onChangeOrderValue(infoValue);
   };
 
   return (
@@ -223,19 +254,7 @@ export function FirstStep({
       <Button
         css={{ alignSelf: 'center', margin: '50px 0' }}
         size="large"
-        onClick={
-          validateOrder(infoValue)
-            ? () => {
-                onChangeOrderValue(infoValue);
-              }
-            : () => {
-                open({
-                  title: '',
-                  body: '모든 항목을 입력해주세요.',
-                  onButtonClick: close,
-                });
-              }
-        }
+        onClick={handleSubmitOrder}
       >
         Next
       </Button>
