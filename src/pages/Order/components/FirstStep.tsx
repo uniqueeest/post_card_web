@@ -136,6 +136,7 @@ export function FirstStep({
               <img
                 css={{
                   width: index === 6 || index === 7 ? '160px' : '110px',
+                  height: index === 0 ? '153.45px' : '',
                 }}
                 src={image.path}
                 alt={`이미지-${index}`}
