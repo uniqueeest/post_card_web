@@ -229,6 +229,7 @@ export function FirstStep({
         type="number"
         inputMode="numeric"
         id="phoneNumber"
+        placeholder="-를 제외하고 입력해주세요."
         label="phone number"
         value={infoValue.phoneNumber}
         onChange={handleChangeInputValue}
