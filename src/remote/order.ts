@@ -14,11 +14,11 @@ import { store } from './firebase';
 export async function getOrders(pageParams?: QuerySnapshot<OrderData>) {
   const orderQuery =
     pageParams == null
-      ? query(collection(store, COLLECTIONS.ORDER), limit(10))
+      ? query(collection(store, COLLECTIONS.ORDER), limit(20))
       : query(
           collection(store, COLLECTIONS.ORDER),
           startAfter(pageParams),
-          limit(10)
+          limit(20)
         );
 
   const orderSnapshot = await getDocs(orderQuery);
