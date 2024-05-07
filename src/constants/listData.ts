@@ -2,7 +2,7 @@ export const IMAGE_LIST = [
   {
     path: '/images/1.webp',
     name: '1',
-    soldOut: false,
+    soldOut: true,
   },
   {
     path: '/images/2.webp',
@@ -37,7 +37,7 @@ export const IMAGE_LIST = [
   {
     path: '/images/8.webp',
     name: '8',
-    soldOut: false,
+    soldOut: true,
   },
 ];
 
