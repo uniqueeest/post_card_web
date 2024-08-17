@@ -2,17 +2,17 @@ export const IMAGE_LIST = [
   {
     path: '/images/1.webp',
     name: '1',
-    soldOut: true,
+    soldOut: false,
   },
   {
     path: '/images/2.webp',
     name: '2',
-    soldOut: true,
+    soldOut: false,
   },
   {
     path: '/images/3.webp',
     name: '3',
-    soldOut: true,
+    soldOut: false,
   },
   {
     path: '/images/4.webp',
@@ -27,17 +27,17 @@ export const IMAGE_LIST = [
   {
     path: '/images/6.webp',
     name: '6',
-    soldOut: true,
+    soldOut: false,
   },
   {
     path: '/images/7.webp',
     name: '7',
-    soldOut: true,
+    soldOut: false,
   },
   {
     path: '/images/8.webp',
     name: '8',
-    soldOut: true,
+    soldOut: false,
   },
 ];
 
